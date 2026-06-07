@@ -3,21 +3,28 @@
 }
 
 .hc-arrow {
-  position: absolute; 
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px; 
-  height: 48px; 
+  transform: translateX(-50%);
+  width: 60px !important;
+  height: 60px !important;
   border-radius: 50%;
   border: none;
-  background: white;
+  background: red;
+  opacity: 1;
   color: black;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   padding: 0;
   cursor: pointer;
   z-index: 10;
+}
+
+.hc-arrow:hover {
+  opacity: 1;
+  background: transparent;
 }
 
 .hc-prev {
@@ -32,11 +39,3 @@
   width: 18px;
   height: 18px;
 }
-
-
-.hc-arrow path{fill:currentColor;}
-.hc-arrow:hover{transform:translateY(-50%) scale(1.08);background:#ffffff;box-shadow:0 12px 30px rgba(2,6,23,0.18)}
-
-.sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
-
-.hotcollections-slider .nft_coll{display:flex;flex-direction:column;align-items:center}

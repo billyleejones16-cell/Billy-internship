@@ -15,6 +15,32 @@ const HotCollections = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  function PrevArrow({ className, style, onClick }) {
+  return (
+    <button
+      className={`hc-arrow hc-prev ${className || ""}`}
+      style={{ ...style }}
+      onClick={onClick}
+      aria-label="Previous"
+    >
+      <FontAwesomeIcon icon={faArrowLeft} />
+    </button>
+  );
+}
+
+function NextArrow({ className, style, onClick }) {
+  return (
+    <button
+      className={`hc-arrow hc-next ${className || ""}`}
+      style={{ ...style }}
+      onClick={onClick}
+      aria-label="Next"
+    >
+      <FontAwesomeIcon icon={faArrowRight} />
+    </button>
+  );
+}
+
   const settings = {
     dots: true,
     infinite: true,
@@ -24,48 +50,11 @@ const HotCollections = () => {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 576, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
   };
 
-  function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <button className={`hc-arrow hc-prev ${className || ""}`}
-      style={style}
-      onClick={onClick}
-      aria-label="Previous"
-      > 
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </button>
-    );
-  }
-
-  function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-       <button className={`hc-arrow hc-next ${className || ""}`}
-      style={style}
-      onClick={onClick}
-      aria-label="Next"
-      > 
-        <FontAwesomeIcon icon={faArrowRight} />
-      </button>
-    );
-  }
 
   useEffect(() => {
     const fetchHotCollections = async () => {
