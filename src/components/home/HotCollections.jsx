@@ -43,11 +43,10 @@ const HotCollections = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-
       console.log("API Response:", data);
 
       setCollections(Array.isArray(data) ? data : []);
@@ -58,8 +57,8 @@ const HotCollections = () => {
     }
   };
 
-  fetchCollections();
-}, []);
+    fetchCollections();
+ }, []);
 
 useEffect(() => {
   if (instanceRef.current) {
@@ -85,7 +84,7 @@ if (loading) {
   );
 }
 
-if (!collections.length === 0) {
+if (!collections.length) {
   return (
     <section className="no-bottom">
       <div className="container">
@@ -126,7 +125,7 @@ if (!collections.length === 0) {
                   >
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Link to="/item-details">
+                     <Link to={`/item-details/${collection.id}`}>
                         <img
                           src={collection.nftImage || nftImage}
                           className="lazy img-fluid"
