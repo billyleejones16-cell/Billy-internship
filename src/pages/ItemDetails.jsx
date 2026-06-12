@@ -7,8 +7,9 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
-    const { id } = useParams();
-    console.log("NFT ID:", id);
+    const { nftId } = useParams();
+    console.log("Route nftId:", nftId);
+
     const [nft, setNft] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -16,23 +17,30 @@ const ItemDetails = () => {
    useEffect(() => {
     const fetchNFT = async () => {
       try {
-        const response = await fetch(
+        const hotResponse = await fetch(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         );
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        console.log("All NFTs:", data);
-
-        const selectedNFT = data.find(
-          (item) => String(item.id) === String(id)
+        const newResponse = await fetch(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
 
-        console.log("Selected NFT:", selectedNFT);
+        const hotData = await hotResponse.json();
+        const newData = await newResponse.json();
+
+        const allNFTs = [...hotData, ...newData];
+
+        console.log("Route nftID:", nftId);
+        console.log("All NFTs:", allNFTs);
+
+        const selectedNFT = allNFTs.find(
+          (item) => String(item.nftId) === String(nftId)
+        );
+        console.log("Selected NFT:", JSON.stringify(selectedNFT, null, 2));
+
+        console.log("Route nftId:", nftId);
+        console.log("Matching NFT:", allNFTs.find(item => String(item.nftId) === String(nftId))
+      );
 
         setNft(selectedNFT);
       } catch (error) {
@@ -43,7 +51,7 @@ const ItemDetails = () => {
     };
 
     fetchNFT();
-  }, [id]);
+  }, [nftId]);
 
   if (loading) {
   return (
@@ -95,19 +103,14 @@ const ItemDetails = () => {
                   <h2>{nft.title}</h2>
 
                   <div className="item_info_counts">
-                    <div className="item_info_views">
-                      <i className="fa fa-eye"></i>
-                      {nft.views || 0}
-                    </div>
-
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      {nft.likes || 0}
+                      {nft.likes}
                     </div>
                   </div>
 
                   <p>
-                    {nft.description || "No description available."}
+                    NFT ID: {nft.nftId}
                   </p>
 
                   <div className="d-flex flex-row">
@@ -128,7 +131,7 @@ const ItemDetails = () => {
 
                         <div className="author_list_info">
                           <Link to="/author">
-                            {nft.authorName || "Unknown"}
+                            Author #{nft.authorId}
                           </Link>
                         </div>
                       </div>
@@ -154,7 +157,7 @@ const ItemDetails = () => {
 
                         <div className="author_list_info">
                           <Link to="/author">
-                            {nft.authorName || "Unknown"}
+                            Author #{nft.authorId}
                           </Link>
                         </div>
                       </div>
