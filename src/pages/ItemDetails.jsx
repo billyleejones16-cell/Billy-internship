@@ -146,7 +146,7 @@ const ItemDetails = () => {
 
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${nft.authorId}`}>
                             <img
                               src={nft.authorImage}
                               alt={nft.title}
@@ -156,7 +156,7 @@ const ItemDetails = () => {
                         </div>
 
                         <div className="author_list_info">
-                          <Link to="/author">
+                          <Link to={`/author/${nft.authorId}`}>
                             Author #{nft.authorId}
                           </Link>
                         </div>

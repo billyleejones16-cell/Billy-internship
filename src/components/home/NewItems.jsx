@@ -7,6 +7,7 @@ import "keen-slider/keen-slider.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useKeenSlider } from "keen-slider/react";
+import "./NewItems.css";
 
 const NewItems = () => {
   const [collections, setCollections] = useState([]);
@@ -110,26 +111,31 @@ const NewItems = () => {
         <div className="row">
             <div className="col-lg-12">
             <div className="text-center" style={{ position: "relative" }}>
+                <h2>New Items</h2>
+                <div className="small-border bg-color-2"></div>
+                </div>
+                </div>
+
+            <div className="slider-wrapper"> 
              
              <button
                 className="hc-arrow hc-prev"
                 onClick={handlePrev}
                 aria-label="Previous"
                 >
+
                 <FontAwesomeIcon icon={faArrowLeft} />
               </button>
+              
               <button
                 className="hc-arrow hc-next"
                 onClick={handleNext}
                 aria-label="Next"
                 >
+
                 <FontAwesomeIcon icon={faArrowRight} />
                 </button>
-                
-                <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
+
           <div ref={sliderRef} className="keen-slider">
             {collections.map((collection, index) => (
               <div
@@ -140,7 +146,7 @@ const NewItems = () => {
 
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${collection.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title={`Creator: ${collection.author}`}
@@ -204,6 +210,7 @@ const NewItems = () => {
               </div>
             </div>
           ))}
+          </div>
           </div>
         </div>
       </div>

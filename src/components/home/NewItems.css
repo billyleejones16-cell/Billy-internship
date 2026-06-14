@@ -1,0 +1,74 @@
+.slider-wrapper {
+    position: relative;
+}
+.hc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: lightgray;
+  color: black;
+  cursor: pointer;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.hc-arrow:hover {
+  background: #8364e2;
+}
+
+.hc-prev {
+  left: -60px;
+}
+
+.hc-next {
+  right: -60px;
+}
+
+/* Keep arrows inside screen on tablets */
+@media (max-width: 992px) {
+  .hc-prev {
+    left: -20px;
+  }
+
+  .hc-next {
+    right: -20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .hc-prev {
+    left: 5px;
+  }
+
+  .hc-next {
+    right: 5px;
+  }
+}
+
+/* Slider spacing */
+.keen-slider {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Ensure cards stay same height */
+.nft__item {
+  height: 100%;
+}
+
+/* Fix image sizing */
+.nft__item_preview {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
