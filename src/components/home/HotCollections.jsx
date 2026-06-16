@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import "./HotCollections.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -117,6 +118,14 @@ if (!collections.length) {
                 <FontAwesomeIcon icon={faArrowLeft} />
               </button>
 
+               <button
+                className="hc-arrow hc-next"
+                onClick={handleNext}
+                aria-label="Next slide"
+              >
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+
             <div ref={sliderRef} className="keen-slider">
               {collections.map((collection) => (
                   <div
@@ -135,7 +144,7 @@ if (!collections.length) {
                     </div>
 
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${collection.authorId}`}>
                         <img
                           className="lazy pp-coll"
                           src={collection.authorImage || AuthorImage}
@@ -157,15 +166,7 @@ if (!collections.length) {
                   </div>
               </div>
             ))}
-            </div>  
-              <button
-                className="hc-arrow hc-next"
-                onClick={handleNext}
-                aria-label="Next slide"
-              >
-                <FontAwesomeIcon icon={faArrowRight} />
-              </button>
-
+            </div> 
             </div>
           </div>
           
