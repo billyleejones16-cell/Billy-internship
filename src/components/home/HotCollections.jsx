@@ -118,6 +118,14 @@ if (!collections.length) {
                 <FontAwesomeIcon icon={faArrowLeft} />
               </button>
 
+               <button
+                className="hc-arrow hc-next"
+                onClick={handleNext}
+                aria-label="Next slide"
+              >
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+
             <div ref={sliderRef} className="keen-slider">
               {collections.map((collection) => (
                   <div
@@ -158,15 +166,7 @@ if (!collections.length) {
                   </div>
               </div>
             ))}
-            </div>  
-              <button
-                className="hc-arrow hc-next"
-                onClick={handleNext}
-                aria-label="Next slide"
-              >
-                <FontAwesomeIcon icon={faArrowRight} />
-              </button>
-
+            </div> 
             </div>
           </div>
           

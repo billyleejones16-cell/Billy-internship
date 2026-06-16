@@ -1,36 +1,50 @@
 .slider-wrapper {
     position: relative;
+    padding: 0 60px;
 }
+
 .hc-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 45px;
   height: 45px;
-  border: none;
   border-radius: 50%;
+  border: none;
   background: lightgray;
-  color: black;
-  cursor: pointer;
-  z-index: 20;
-
-  display: flex;
+  color: #081225;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-
-  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .hc-arrow:hover {
-  background: #8364e2;
+  transform: translateY(-50%) scale(1.06);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.18);
 }
 
-.hc-prev {
-  left: -60px;
+.hc-arrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(2, 120, 255, 0.12);
 }
 
-.hc-next {
-  right: -60px;
+.hc-prev { left: -22px; }
+.hc-next { right: -22px; }
+
+.hc-arrow svg { width: 18px; height: 18px; fill: currentColor; }
+
+.keen-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.keen-slider__slide {
+    position: relative;
+    overflow: hidden;
 }
 
 /* Keep arrows inside screen on tablets */
@@ -55,10 +69,9 @@
   }
 }
 
-/* Slider spacing */
 .keen-slider {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Ensure cards stay same height */
