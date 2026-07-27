@@ -3,13 +3,34 @@ import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import {useParams} from "react-router-dom";
 
 const Author = () => {
-  return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
+  const { id } = useParams();
+  const [author, setAuthor] = React.useState(null);
 
+  React.useEffect(() => {
+    const fetchAuthor = async () => {
+      try {
+        const response = await fetch(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authorDetails?authorId=`
+        );
+        console.log("Status:", response.status);
+        const data = await response.json();
+        console.log("Author data:", data);
+        setAuthor(data);
+      } catch (error) {
+        console.error("Error fetching author data:", error);
+      }
+    };
+    fetchAuthor();
+  }, [id]);
+
+  if (!author) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div>
         <section
           id="profile_banner"
           aria-label="section"
@@ -30,17 +51,16 @@ const Author = () => {
 
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-
+                          {author.author}
                           <span className="profile_username">
-                            @monicaaaa
+                            @{author.username}
                           </span>
 
                           <span
                             id="wallet"
                             className="profile_wallet"
                           >
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {author.wallet}
                           </span>
 
                           <button
@@ -57,7 +77,7 @@ const Author = () => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">
-                        573 followers
+                        {author.followers} followers
                       </div>
 
                       <Link to="#" className="btn-main">
@@ -77,7 +97,6 @@ const Author = () => {
           </div>
         </section>
       </div>
-    </div>
   );
 };
 
