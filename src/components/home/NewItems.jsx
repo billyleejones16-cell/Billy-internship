@@ -85,6 +85,10 @@ const NewItems = () => {
           return;
         }
 
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
         updatedCountdowns[collection.id] =
           `${String(hours).padStart(2, "0")}:` +
           `${String(minutes).padStart(2, "0")}:` +
