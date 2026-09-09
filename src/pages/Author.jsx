@@ -13,7 +13,7 @@ const Author = () => {
     const fetchAuthor = async () => {
       try {
         const response = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authorDetails?authorId=`
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authorDetails?authorId=${id}`
         );
         console.log("Status:", response.status);
         const data = await response.json();
