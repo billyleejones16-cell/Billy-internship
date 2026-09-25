@@ -4,6 +4,7 @@ import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import {useParams} from "react-router-dom";
+import PageSkeleton from "../components/UI/PageSkeleton";
 
 const Author = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const Author = () => {
   }, [id]);
 
   if (!author) {
-    return <div>Loading...</div>;
+    return <PageSkeleton />;
   }
   return (
     <div>

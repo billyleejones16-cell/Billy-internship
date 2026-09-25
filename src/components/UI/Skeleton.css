@@ -1,0 +1,27 @@
+.skeleton-box {
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 37%, #e6e6e6 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* utility helpers */
+.skeleton-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.skeleton-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

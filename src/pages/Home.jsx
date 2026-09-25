@@ -5,7 +5,7 @@ import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSeller";
-import PageSkeleton from "../components/home/PageSkeleton";
+import PageSkeleton from "../components/UI/PageSkeleton";
 
 
 const Home = () => {
